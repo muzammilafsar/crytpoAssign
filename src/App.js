@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import FacebookAuth from './facebookLogin/facebookLogin';
+import RegistrationPage from './registrationPage/registrationPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    toggleAssignment: false
+  }
+  componentDidMount() {
+   
+  }
+  toggleAssignment = () => {
+    this.setState({toggleAssignment: !this.state.toggleAssignment});
+  }
+  render() {
+    return (
+      <div className="App">
+        <button className="btn btn-primary toggle" onClick={this.toggleAssignment}>Switch Assignment</button>
+        {
+          this.state.toggleAssignment? 
+          <FacebookAuth />
+          :
+          <RegistrationPage></RegistrationPage>
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
